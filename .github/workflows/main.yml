@@ -15,4 +15,4 @@ jobs:
         username: ${{ secrets.FTPUSERNAME }}
         password: ${{ secrets.FTPPASSWORD }}
         protocol: ftps
-        server-dir: home/kuznet2/public_html/andryusha/samples
+        server-dir: home/kuznet2/public_html/andryusha/samples/
