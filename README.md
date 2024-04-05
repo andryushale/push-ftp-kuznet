@@ -1,2 +1,2 @@
-# push-ftp
+# push-ftp-kuznet
 ftp
