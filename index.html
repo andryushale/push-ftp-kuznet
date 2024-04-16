@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="images/icon.png"/>
+	<link rel="apple-touch-icon" href="images/icon.png"/>
+	<title>andryusha kuznetsov</title>
+
+	<link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Unbounded:wght@400;600&family=Karla:wght@400;900&display=swap" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		//globals
+		var images = ['ibis.png', 'cyco_big.gif', 'safe.png', 'srh.png', 'bampfa1.gif', 'sachiko-portfolio.png', 'artproject.png', 'mythology.png', 'bai.png', 'brooks.png', 'bear transit.png', 'ebbm.png', 'goldpockets.png', 'oraita.png', 'babushka.png', 'lk2.png', 'neopian.png', '1997.png'],
+			imagesIndex = 0,
+			stop = false;
+
+		for (i = 0; i < images.length; i++)
+		{
+			var img = $('<img class=\'p\'>');
+			img.attr('src', 'images/' + images[i]);
+			img.appendTo('body').hide();
+		}
+
+		//media query
+		if ($(window).width() <= 600)
+		{
+			$('#nav').prepend("<div id='intro_circle'></div>");
+
+			$('.item').each(function(){
+				var i = $('#nav').find('.item').index(this);
+				$(this).prepend("<img src='images/" + images[i] + "'/>");
+			});
+		}
+		else
+		{
+			//define size of preview circle
+
+			$('img.o, img.p').hide();
+
+			$('#intro_circle').click(function(){
+				$(this).hide();
+				showImage();
+			});
+
+			$('.item').each(function(){
+				$(this).click(function(){
+					$('#intro_circle').hide();
+					$('#code_highlight').html('').hide();
+
+					$('img.o').css({
+						'left': '10vw',
+						'top' : 0
+					}).show();
+					imagesIndex = $('#nav').find('.item').index(this);
+					var imagesString = 'images/' + images[imagesIndex];
+					$('img.o').attr('src', imagesString);
+
+					showImage();
+					$('.active').removeClass('active');
+					$(this).addClass('active');
+				});
+			});
+
+			// //mouseover intro circle
+			$('#intro_circle').on('mousemove', function(e)
+			{
+				var radius = $(this).outerHeight() / 2,
+					cursorX = e.pageX,
+					cursorY = e.pageY,
+					dynamicElement = $('#intro_circle').css({
+					'left' : cursorX - radius * 1.5,
+					'top' : cursorY - radius * 1.5
+				});
+			});
+
+			function showImage()
+			{
+
+				$('#fixed_circle').show();
+				var newWidth = $('#intro_circle').width(),
+					newHeight = $('#intro_circle').height(),
+					newLeft = $('#intro_circle').css('left'),
+					newTop = $('#intro_circle').css('top');
+
+
+				$('img.o').animate({
+					'width': newWidth,
+					'height': newHeight,
+					'left': newLeft,
+					'top' : newTop,
+					'clip-path': 'circle(50% at 50% 50%)',
+					'transform': "translate(0%, 0%)"
+				}).show();
+				$('img.p').hide();
+
+				$('#nav').find('.item').eq(0).addClass('active');
+
+				//populate "about"
+				var text = $('#nav').find('.about').eq(imagesIndex).html();
+				$('#about').html(text);
+
+				//reset 
+				$('img.o').css({
+					'clip-path': 'circle(50% at 50% 50%)',
+					'transform': 'translate(0%, 0%)',
+					'animation': 'none'
+				});
+				stop = false;
+			}
+
+			// //mouseover preview
+			$('img.o').on('mousemove', function(e)
+			{
+				if (!stop)
+				{
+					var radius = $(this).outerHeight() / 2,
+						cursorX = e.pageX,
+						cursorY = e.pageY
+						dynamicElement = $('img.o').animate({
+						'left' : cursorX - radius * 1.5,
+						'top' : cursorY - radius * 1.5
+					}, 20);
+				}
+			});
+
+
+			//click to expand
+			$('img.o').click(function(){
+				$(this).css({
+					'animation': 'expand 1s ease-in-out'
+				}).css({
+					'clip-path': 'circle(100% at 50% 50%)',
+					'width': '100%',
+					'transform': 'translate(-25%, 0%)'
+				});
+				stop = true;
+
+				//populate "code highlight"
+				if (imagesIndex < 10)
+				{
+					var text = $('#nav').find('.code_highlight').eq(imagesIndex).html();
+					$('#code_highlight').show().html(text).css('top', this.offsetTop + this.height);
+				}
+			});
+		}
+
+		$('#fixed_circle').click(function(){
+			$('#fixed_circle, img.o, #code_highlight').hide();
+			$('#about').html('');
+			$('#intro_circle').show();
+
+		});
+		// bulk
+		$(document).on('click', '.ragosta_highlight_1_trigger', function(){
+			$('.ragosta_highlight_1').toggle(500);
+			$(this).toggleClass('u');
+		});
+		$(document).on('click', '.ragosta_highlight_2_trigger', function(){
+			$('.ragosta_highlight_2').toggle(500);
+			$(this).toggleClass('u');
+		});
+		$(document).on('click', '.ragosta_highlight_3_trigger', function(){
+			$('.ragosta_highlight_3').toggle(500);
+			$(this).toggleClass('u');
+		});
+
+		$('.contact').css('border-radius', parseInt($('.contact').outerWidth()/2) + 'px / ' + parseInt($('.contact').outerHeight()/2) + 'px');
+	});
+	</script>
+
+
+	<style type="text/css">
+
+	/*general*/
+	body, html
+	{
+		margin: 0px;
+		padding: 0px;
+		font-family: 'Karla', 'Trebuchet MS', sans-serif;
+		font-size: 1.1em;
+		color: #2c1f8d;
+	}
+	@media only screen and (max-width: 600px) {
+	  body,html {
+	  	font-size: 3vw;
+	  }
+	}
+
+	*
+	{
+	  box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+
+	*::selection, *::-webkit-selection
+	{
+		background-color: #abde1f !important; 
+		color: #fff !important;
+	}
+
+	article
+	{
+		padding: 15px;
+	}
+	a
+	{
+		text-decoration: none;
+		line-height: 2.5;
+		color:  #2c1f8d;
+	}
+	u /*proxy for headers*/
+	{
+		font-family: 'Unbounded', 'Arial Black';
+		text-transform: lowercase;
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+	u.small
+	{
+		font-size: 1.2em;
+		display: block;
+	}
+		@media only screen and (max-width: 600px)
+		{
+			u
+			{
+				margin-bottom: 15px;
+				font-size: 5vw;
+			}
+			u.small
+			{
+				margin-bottom: 15px;
+				font-size: 3vw;
+			}
+		}
+	b, h1, h3
+	{
+		font-family: 'Unbounded', 'Arial Black';
+	}
+	span
+	{
+		cursor: pointer;
+	}
+	span:hover
+	{
+		text-decoration: underline;
+	}
+	a:hover
+	{
+		text-decoration: underline;
+	}
+
+	/*specific*/
+	body
+	{
+		height:  100vh;
+		width:  100vw;
+		padding:  0px 50px;
+		background-color: #3e2bcc;
+	}
+	#content
+	{
+		width: 70vw;
+		height: 100vh;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		overflow-x:  hidden;
+	}
+	@media only screen and (max-width: 600px) {
+	  #content {
+	  	display: none;
+	  }
+	}
+		#container
+		{
+			position: relative;
+			top: 0px;
+			left: 0px;
+			cursor: pointer;
+		}
+			#intro_circle
+			{
+				width: 40vw;
+				height: 40vw;
+				margin: 5vw;
+				background-color: transparent;
+				border-radius: 100%;
+				filter: blur(40px);
+				border: 50px solid #fff;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				animation: breathe 10s infinite;
+			}
+			#fixed_circle
+			{
+				width: 5vw;
+				height: 5vw;
+				margin: 3vw;
+				background-color: transparent;
+				border-radius: 100%;
+				filter: blur(5px);
+				border: 10px solid #abde1f;
+				opacity: .5;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				animation: breathe 20s infinite;
+				cursor: pointer;
+				display: none;
+				z-index: 1000;
+			}
+			#container img.o
+			{
+				width: 50vw;
+				height: 50vw;
+				object-fit: cover;
+				margin: 5vw;
+				clip-path: circle(50% at 50% 50%);
+				position: absolute;
+				transform: translate(0%, 0%);
+			}
+			#about
+			{
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				margin: 5vw;
+				color: #FFF;
+				width: 15vw;
+				text-align: right;
+			}
+			#about .description
+			{
+				user-select: none;
+				z-index: -1;
+
+			}
+			#about .description a, .contact
+			{
+				background-color: #abde1f;
+				padding: 15px;
+				border: 1px solid #3e2bcc;
+				text-wrap: nowrap;
+				font-family: 'Unbounded';
+				font-weight: 400;
+			}
+			#about .description a
+			{
+				border-radius: 125px / calc(1.25vw + 30px);
+			}
+				#about .description a.long, .contact.long
+				{
+					font-size:  .8em;
+				}
+				#about .description a.long
+				{
+					margin-left: -100px;
+				}
+			.semicircle
+			{
+				position: absolute;
+				z-index: -1;
+				display: block;
+			}
+			#code_highlight
+			{
+				position: relative;
+				padding: 25px;
+				background-color:  #3e2bcc;
+				display: none;
+				color: #FFF;
+				text-align: justify;
+				cursor: auto;
+			}
+			#code_highlight img
+			{
+				max-width: 100%;
+			}
+			#code_highlight .before_after
+			{
+				display: flex;
+				column-gap: 5%;
+			}
+			#code_highlight .before, #code_highlight .after 
+			{
+				flex: 50%;
+				min-width: 0px;
+			}
+			pre
+			{
+				white-space: pre-wrap;
+				word-wrap: break-word;
+				background-color: #2c1f8d;
+				border-radius: 1em;
+				box-shadow: 0px 0px 10px 10px #2c1f8d;
+			}
+			code
+			{
+				font-family: 'Nova Mono', monospace;
+				font-size: .75em;
+			}
+			#name
+			{
+				font-size: 5em;
+				color: #FFF;
+				filter: blur(5px);
+				margin: 10vw;
+				position: fixed;
+				user-select: none;
+				z-index: -1;
+			}
+	#nav
+	{
+		width: 30vw;
+		height: 100vh;
+		position: fixed;
+		right: 0px;
+		top: 0px;
+		overflow-y: scroll;
+	}
+
+	#nav img
+	{
+		width: 80vw;
+		display: block;
+		margin-bottom: 15px;
+	}
+
+	@media only screen and (max-width: 600px) {
+	  #nav {
+	  	width: 100vw;
+	  	position: absolute;
+	  }
+	}
+		#nav .about, #nav .code_highlight
+		{
+			display: none;
+		}
+
+		@media only screen and (max-width: 600px) {
+		  #nav .about, #nav .code_highlight {
+		  	display: block;
+		  	border-bottom: 1px solid #FFF;
+		  	margin-bottom: 100px;
+		  }
+
+		  #nav::before
+		  {
+		  	content: 'Andryusha Kuznetsov';
+		  	font-size: 10vw;
+			color: #FFF;
+			filter: blur(5px);
+		  }
+		}
+
+
+	/*pointer*/
+	.active
+	{
+		position: relative;
+		font-weight: 900;
+		text-decoration: underline;
+		color: #FFF;
+	}
+	.active::before
+	{
+		position: absolute;
+		content: "";
+		width: 0px;
+		height: 0px;
+		border-top: 7px solid transparent;
+		border-right: 10px solid white;
+		border-bottom: 7px solid transparent;
+		border-left: 10px solid transparent;
+		top: 25%;
+		left: -25px;
+	}
+
+	/*media*/
+
+	@keyframes breathe{
+		0% {transform: scale(1, 1);}
+		25% {transform: scale(.75, .75);}
+		50% {transform: scale(1.5, 1.5);}
+		75% {transform: scale(.5, .5);}
+		100% {transform: scale(1, 1);}
+	}
+
+	@keyframes expand{
+		0%
+		{
+			clip-path: circle(50% at 50% 50%);
+			width: 40vw;
+			transform: translate(0%, 0%);
+		}
+		100%
+		{
+			clip-path: circle(100% at 50% 50%);
+			width: 100%;
+			transform: translate(-25%, 0%);
+		}
+
+	}
+
+	/*bulk*/
+	.ragosta_highlight_1, .ragosta_highlight_2, .ragosta_highlight_3
+	{
+		display: none;
+	}
+	.ragosta_highlight_1_trigger, .ragosta_highlight_2_trigger, .ragosta_highlight_3_trigger
+	{
+		cursor: pointer;
+	}
+	.ragosta_highlight_1_trigger:hover, .ragosta_highlight_2_trigger:hover, .ragosta_highlight_3_trigger:hover
+	{
+		text-decoration: underline;
+	}
+	.u
+	{
+		text-decoration: underline;
+	}
+	#content::-webkit-scrollbar
+	{
+  		display: none;
+	}
+	#content
+	{
+		-ms-overflow-style: none;  /* IE and Edge */
+		scrollbar-width: none;  /* Firefox */
+	}
+	</style>
+</head>
+<body>
+	<article id="content">
+		<div id="container">
+			<div id="name">Andryusha<br/>Kuznetsov</div>
+			<div id=intro_circle></div>
+			<div id=fixed_circle></div>
+			<img src="images/ibis.png" class="o"/>
+			<div id="about"></div>
+			<div id="code_highlight"></div>
+		</div>
+	</article>
+	<article id="nav">
+		<article>
+			<u>Websites</u><br/><br/>
+			<u class="small">Professional</u>
+
+<!-- 			<span class="item">Hilar Health</span><br>
+				<div class="about">
+					<div class="description"><b>2024</b><br/><br/>a website for the private practice of Dr. Brittney Brown
+					<br/><br/><a class="link" href="https://www.hilarhealth.com/" target="_blank">view online ></a></div>
+				</div>
+				<div class="code_highlight"></div> -->
+
+			<span class="item">Visualizing Identity</span><br>
+				<div class="about">
+					<div class="description"><b>2021-23</b><br/><br/>a text visualization of data from <i>The PRIDE Study</i>, commissioned by Ibis Reproductive Health
+					<br/><br/><a class="link" href="https://www.inclusivesrh.com/visualizing-identity" target="_blank">view online ></a></div>
+				</div>
+				<div class="code_highlight">
+					<h1>Project Overview</h1>
+					<p>I designed and coded an online data visualization of 5,000 responses to the PRIDE Study, in which trans and gender non-conforming respondents describe their gender identities in words and share their demographic information. I toyed with color schemes and font choices in order to meet my client’s goal of building an approachable, fun, and user-friendly design tailored to an LGBT, non-expert target audience.</p>
+					<img src="images/ibis_highlight_2.gif">
+					<p>I used jQuery to make visualizations of quantitative data related to respondent race, region, and age. The more complicated task was to clean, consolidate, and organize the qualitative data, which consisted of thousands of strings of free-write responses. The final product includes a search function which allows users to filter the display by respondent age, region, and gender identity. It also features a “keyword” search allowing users to view common themes in the text data.</p>
+					<img src="images/ibis_highlight_1.gif">
+					<img src="images/ibis_highlight_3.gif">
+					<p>In this project, I used Javascript/jQuery for a wide range of purposes, including cleaning a data set, generating dynamic HTML elements with data attributes, and producing visual effects around user interactions.</p>
+
+					<h2>Code Highlights</h2>
+					<p>Being presented with a dataset of CSV strings and respondent demographic information, I first reorganized the data into a Javascript array of <i>unique</i> responses while preserving the unique demographic information of each individual respondent.</p>
+
+					<div class="before_after">
+						<div class="before">
+						<b>Before</b>
+<pre><code>Transgender man,Cisgender man,Transgender woman,Cisgender woman,Genderqueer,Non-binary,Agender,Two-spirit,Two-spirit_write-in,Additional gender,Additional gender_write-in,Gender id prefer not to say,Man,Woman,Sex assigned at birth,SAAB-Writein,intersex,AIAK native,Black-AfricanAmerican,Hispanic Latinx,Middle East North African,Native Hawaiian Pacific Islander,White,Unknown race,Other,East Asian,South Asian,Southeast Asian,Central Asian,None of these races,newregion,age_new
+1,,,,,,,,,,,,,,1,,0,,,,,,1,,,,,,,,Northeast,39
+1,,,,1,1,,,,,,,,,1,,0,,,,,,1,,,,,,,,Northeast,30
+,,,,,1,,,,,,,,,1,,0,,,,,,1,,,,,,,,Northeast,33
+1,,,,,1,,,,1,Bigender,,,,1,,0,,,,,,1,,,,,,,,Northeast,31
+,,,,,,,,,1,transmasculine,,,,1,,0,,,,,,1,,,,,,,,Northeast,37
+,,,,1,1,1,,,1,genderfluid,,,,1,,0,,,,,,1,,,,,,,,Northeast,24</code></pre>
+					</div>
+					<div class="after">
+					<b>After</b>
+<pre><code>…,[
+    "non-binary femme", //unique text response
+    6, //number of respondents
+    "0023G0000000010S100Re1000,0032G0000000010S100Re1000,00NAG0000000010S100Re0010,00NAG0000100010S100Re0001,00NAG0000000010S100Re0001,00NAG0000100010S100Re0010" //consolidated demographic info of each
+],
+[
+    "still in the works, i guess. i like the term gender non-conforming.",
+    1,
+    "0020G0000101010S100Re1000"
+],…</code></pre>
+					</div>
+					</div>
+					<b>Code example</b>
+<pre><code>$(function(){
+	var unique_labels = [],
+		tempKey = "",
+		tempLabel = "";
+
+	for (let i = 0; i < keys_array.length; i++) //for each key
+	{
+		if (unique_labels.indexOf(keys_array[i][0]) == -1) //if this key.colA does not match any entries in the "unique labels" array
+		{
+			unique_labels.push(keys_array[i][0]); //put it.colA in the unique labels array
+		}
+		else //that means the current key is a duplicate
+		{
+			var tempLabel = keys_array[i][0], // templabel = duplicate key.colA 
+				tempKey = keys_array[i][2], // tempKey = duplicate key.colC
+				firstInstance; // placeholder
+
+    		// the goal is to find where the first occurence of duplicate key.colA was 
+			for (var j = 0; j < i; j++) //for each key before the duplicate key
+			{
+				if (keys_array[j][0] == tempLabel) //if we found a match for duplicate key.colA
+				{
+					firstInstance = j; // we note its index in the array as firstInstance
+
+	    			var colC = keys_array[firstInstance][2]; // we go to that position and get its colC, a string
+	    			colC = colC + "," + tempKey; // we add the duplicate key's colC 
+	    			keys_array[firstInstance][2] = colC; // we update the value of the original instance 
+				}
+			}
+
+			keys_array.splice(i, 1); //remove duplicate key from array of all keys so that the code does not encounter it again. the length of keys array goes down by 1 each time we do this
+			i--; //now there is a new key at position i so we offset the i++ at the end of this loop
+		}
+	}
+});</code></pre>
+					<p>Having reorganized the data, I then combined jQuery and HTML data attributes to assign search "IDs" to each element.</p>
+<pre><code>function assign_searchID() //make data attributes for each 
+{
+    $('main div:not(.sex)').each(function(){ //exclude elements that display biological sex rather than gender
+        var string = $(this).text(),
+            entries = keys_array.length; //keys_array contains all data
+
+            for (let i = 0; i < entries; i++)
+            {
+                if (keys_array[i][0] == string)
+                {
+                    //it's a match!
+                    var temp = keys_array[i][2];
+                }
+            }
+        $(this).attr('searchid', temp);
+    });
+};</code></pre>
+					<p>Finally, the following code allows users to filter text responses by demographic data, according either to an exclusive or inclusive search.</p>
+<pre><code>function filter_results_by(s)
+{
+    var searchkey = s,
+        searchID;
+
+    $('main div').each(function(){
+
+        if ($(this).attr('searchid'))
+        {
+            searchID = $(this).attr('searchid');
+
+                if (searchID.indexOf(',') > -1) //if there are multiple searchIDs
+                {
+                    $(this).addClass('filtered_out');
+
+                    searchIDArrays = searchID.split(",");
+                    for (let i = 0; i < searchIDArrays.length; i++)
+                    {
+                            if (exclusive)
+                            {
+                                if ((compare_keys_exclusive(s, searchIDArrays[i])))
+                                {
+                                    $(this).removeClass('filtered_out');
+                                }
+                            }
+                            else
+                            {
+                                if ((compare_keys_inclusive(s, searchIDArrays[i])))
+                                {
+                                    $(this).removeClass('filtered_out');
+                                }
+                            }
+
+                    }
+                } 
+                else //if there is 1 searchID
+                {
+                    if (exclusive)
+                    {
+                        if (!(compare_keys_exclusive(s, searchID)))
+                        {
+                            $(this).addClass('filtered_out');
+                        }
+                    }
+                    else
+                    {
+                        if (!(compare_keys_inclusive(s, searchID)))
+                        {
+                            $(this).addClass('filtered_out');
+                        }
+                    }
+                }
+        }
+        else
+        {
+            $(this).addClass('impossible_to_tell_if_match');
+        }
+    });
+    $('.filtered_out').hide();
+    $('.impossible_to_tell_if_match').hide();
+    $('main').prepend('&lt;div id="banner"&gt;The following results match your search:&lt;/div&gt;')
+}
+
+function compare_keys_exclusive(a, b)
+{
+    var filter = a,
+        searchID = b; // true = do not filter out, false = filter out
+
+    var age = searchID.substring(2,4),
+        minAge = parseInt(filter.substring(0,2)),
+        maxAge = parseInt(filter.substring(2,4)),
+        ageFiltered = !(minAge == 15 && maxAge == 99);
+
+    var gender =  searchID.substring(5,15),
+        genderFilter = filter.substring(5,15),
+        genderFiltered = !(genderFilter == 1111111111),
+
+        sex = searchID.substring(16,19),
+        sexFilter = filter.match(/(?<=S)(.*?)(?=Re)/).pop(),
+        sexFiltered = !(sexFilter == 111),
+
+        region = searchID.substring(21,25),
+        regionFilter = filter.match(/(?:[^Re])+$/).pop(),
+        regionFiltered = !(regionFilter == 1111);
+
+    var agetrue,
+        regiontrue,
+        gendertrue;
+
+    if (ageFiltered)
+    {
+        if (age == "NA")
+        {
+            agetrue = false;
+        }
+        else if(age < minAge || age > maxAge)
+        {
+            agetrue = false; 
+        }
+        else
+        {
+            agetrue = true;
+        }
+    }
+    else
+    {
+        agetrue = true;
+    }
+
+    if (regionFiltered)
+    {
+        if (region == "NA")
+        {
+            regiontrue = false;
+        }
+        else
+        {
+            regiontrue = compare_strings(region, regionFilter);
+        }
+    }
+    else
+    {
+        regiontrue = true;
+    }
+
+    if (genderFiltered)
+    {
+        if (gender == "NA")
+        {
+            gendertrue = false;
+        }
+        else
+        {
+            gendertrue = compare_strings(gender,genderFilter)
+        }
+    }
+    else
+    {
+        gendertrue = true;
+    }
+    
+    if (agetrue && regiontrue && gendertrue)
+    {
+        return true;
+    }
+}
+
+function compare_keys_inclusive(a, b)
+{
+    var filter = a,
+        searchID = b; // true = do not filter out, false = filter out
+
+    var age = searchID.substring(2,4),
+        minAge = parseInt(filter.substring(0,2)),
+        maxAge = parseInt(filter.substring(2,4)),
+        ageFiltered = !(minAge == 15 && maxAge == 99);
+
+    var gender =  searchID.substring(5,15),
+        genderFilter = filter.substring(5,15),
+        genderFiltered = !(genderFilter == 1111111111),
+
+        sex = searchID.substring(16,19),
+        sexFilter = filter.match(/(?<=S)(.*?)(?=Re)/).pop(),
+        sexFiltered = !(sexFilter == 111),
+
+        region = searchID.substring(21,25),
+        regionFilter = filter.match(/(?:[^Re])+$/).pop(),
+        regionFiltered = !(regionFilter == 1111);
+
+    // age
+    if (ageFiltered)
+    {
+        if (age == "NA")
+        {
+            return false;
+        }
+        else if(age < minAge || age > maxAge)
+        {
+            return false; 
+        }
+    }
+    // region
+    else if (regionFiltered)
+    {
+        if (region == "NA")
+        {
+            return false;
+        }
+        else if(!(compare_strings(region, regionFilter)))
+        {
+            return false;
+        }
+    }
+
+    // gender
+    else if (genderFiltered)
+    {
+        if (gender == "NA")
+        {
+            return false;
+        }
+        else if(!(compare_strings(gender,genderFilter))) 
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+function compare_strings(a, b)
+{
+    // a is the ID, b is the filter. tell me if it's an exact match, partial match, or no match
+    var length = a.length,
+        match = false;
+    if (a == b)
+    {
+        match = true;
+        // exact match;
+    }
+    else
+    {
+        for (let i = 0; i < length; i++)
+        {
+            if (a[i] == 1 && b[i] == 1)
+            {
+                match = true;
+                //partial match
+            }
+        }
+    }
+    return match;
+}</code></pre>
+				</div>
+
+
+
+			<span class="item">Friends of CYCO Books</span><br>
+				<div class="about">
+					<div class="description"><b>2022</b><br/><br/>a website, logos, and social media ads for New York City’s last Yiddish bookstore in Queens, NY. built on Squarespace.<br/><br/>
+					<i>the site is preserved privately and password protected. use password </i>books<i> to view.</i>
+					<br/><br/><a class="link" href="https://lilac-lime-xsrf.squarespace.com/" target="_blank">view online ></a></div></div>
+				</div>
+				<div class="code_highlight"></div>
+
+			<span class="item">The Safe Study | Safe: El Studio</span><br>
+				<div class="about">
+					<div class="description"><b>2022</b><br/><br/> a bilingual online home for the results of <i>The Safe Study</i>, commissioned by Ibis Reproductive Health. built on Squarespace, illustrated by Mezclao Studio.
+					<br/><br/><a class="link" href="https://www.thesafestudy.net/" target="_blank">view online ></a></div>
+				</div>
+				<div class="code_highlight"></div>
+
+			<span class="item">Inclusive SRH</span><br>
+				<div class="about">
+					<div class="description"><b>2021</b><br/><br/>a hub of community resources and research related to sexual and reproductive health, commissioned by Ibis Reproductive Health. built on Squarespace.
+					<br/><br/><a class="link" href="https://www.inclusivesrh.com/" target="_blank">view online ></a></div>
+				</div>
+				<div class="code_highlight"></div>
+
+
+			<span class="item">Berkeley Art Museum and Pacific Film Archive (BAMPFA) Student Committee</span><br>
+				<div class="about">
+					<div class="description"><b>2015</b><br/><br/>a home for BAMPFA's student club at UC Berkeley
+					<br/><br/><a class="link" href="archive/bampfa.html" target="_blank">view in archive ></a></div>
+				</div>
+				<div class="code_highlight">
+<h3>Code highlight: Baby’s first scroll-to navigation</h3>
+<p><img src="images/bampfa_highlight.gif"></p>
+<pre><code>$(document).ready(function(){
+	var lastScrollTop = 0;
+
+	$(window).scroll(function(){
+		var scroll = $(window).scrollTop();
+
+		//scroll
+		if(scroll > 100 && scroll < 150 && scroll > lastScrollTop)
+		{
+			$("#bottombar").animate({'bottom': '0px'}, 800);
+		}
+		if (scroll == 0)
+		{
+
+			$("#bottombar").animate({'bottom': '-100px'}, 800);
+		}
+		lastScrollTop = scroll;
+	});
+
+	$("a[href='#top']").click(function(){
+		$('#bottombar .selected').removeClass('selected');
+		$('#bottombar .top').addClass('selected');
+		$('html, body').animate({scrollTop: 0}, 1000);
+	});
+});</code></pre></div>
+
+			<br/><u class="small">Creative</u>
+
+
+			<span class="item">Sachiko Ragosta Portfolio</span><br>
+				<div class="about">
+					<div class="description"><b>2021</b><br/><br/>a portfolio for writer Sachiko Ragosta
+					<br/><br/><a class="link" href="http://sachikor.com/" target="_blank">view online ></a></div>
+				</div>
+				<div class="code_highlight">
+					<h1>Project Overview</h1>
+					<p>I built a website for the writer Sachiko Ragosta. It houses their biography, portfolio, and “The Mythology of Blood and Boyhood”, a short story turned into an interactive, multimedia creative non-fiction chapbook. The site is inspired by the recurring themes of Ragosta’s work, such as fragmentation, strage futures, and identity.</p>
+					<h1>Code highlights</h1>
+					<h3 class="ragosta_highlight_1_trigger">Highlight 1: Gradient mosaic with CSS Grid & jQuery</h3>
+					<div class="ragosta_highlight_1">
+						<p><img src="images/ragosta_code_highlight_1.gif"/></p>
+						<b>HTML</b>
+<pre><code>&lt;section id="about">
+	&lt;div class="a colora flex">&lt;/div>
+	&lt;div class="b colora flex">&lt;/div>
+	&lt;div class="c colora flex">&lt;/div>
+	&lt;div class="d colora flex">&lt;/div>
+
+	&lt;div class="1 colorb flex">&lt;/div>
+	&lt;div class="2 colorb flex">&lt;/div>
+	&lt;div class="3 colorb flex">&lt;/div>
+	&lt;div class="4 colorb flex">&lt;/div>
+
+	&lt;div id="box">
+		&lt;div class="ta colorme">&lt;/div>
+		&lt;div class="sa colorme">&lt;/div>
+		&lt;div class="ka colorme">&lt;/div>
+
+		&lt;div class="ti colorme">&lt;/div>
+		&lt;div class="si colorme">&lt;/div>
+		&lt;div class="ka colorme">&lt;/div>
+
+		&lt;div class="ti colorme">&lt;/div>
+		&lt;div class="si colorme">&lt;/div>
+		&lt;div class="ka colorme">&lt;/div>
+
+		&lt;div class="tu colorme">&lt;/div>
+		&lt;div class="su colorme">&lt;/div>
+		&lt;div class="ki colorme">&lt;/div>
+
+		&lt;div class="innerka">
+			&lt;div class="ka1 colorme">&lt;/div>
+			&lt;div class="ka2 colorme">&lt;/div>
+			&lt;div class="ka3 colorme">&lt;/div>
+			&lt;div class="ka4 colorme">&lt;/div>
+			&lt;div class="ka5 colorme">&lt;/div>
+			&lt;div class="ka6 colorme">&lt;/div>
+		&lt;/div>
+	&lt;/div>
+&lt;/section></code></pre>
+					<b>CSS</b>
+<pre><code>/* grid insanity */
+
+main
+{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	color: #1e1e1e;
+	background-color: #E3B505;
+}
+#about
+{
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 40px auto 40px;
+	grid-template-rows: 40px auto 40px;
+	grid-template-areas:
+		"a 1 b"
+		"2 box 3"
+		"c 4 d";
+	gap: 5px 5px;
+}
+#about div.flex
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* border area */ 
+
+#about div.colora
+{	
+	background-color: #8F0000;
+}
+#about div.colorb
+{	
+	background-color: #E5EBF0;
+}
+#about .a
+{
+	grid-area: a;
+}
+#about .b
+{
+	grid-area: b;
+}
+#about .c
+{
+	grid-area: c;
+}
+#about .d
+{
+	grid-area: d;
+}
+
+/* box for index and about*/
+#about #box
+{
+	grid-area: box;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 2.5fr 2.5fr 2fr;
+	grid-template-areas:
+		"ta sa ka"
+		"ti si ka"
+		"ti si ka"
+		"tu su ki";
+	gap: 5px 5px;
+}
+#about #box .ta
+{
+	grid-area: ta;
+}
+#about #box .ta, #about #box .ti
+{
+	text-align: right;
+	font-weight: 800;
+	font-size: 35px;
+	padding: 0px 15px;
+}
+#about #box .si
+{
+	background-color: #a94d50 !important;
+	color: #E5EBF0;
+	letter-spacing: 2px;
+}
+#about #box .sa
+{
+	grid-area: sa;
+}
+#about #box .ka
+{
+	grid-area: ka;
+}
+	#about #box .innerka
+	{
+		grid-column: 3 / 4;
+		grid-row: 1 / 4;
+		background-color: #E3B505;
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-areas:
+			"ka1 ka2"
+			"ka3 ka4"
+			"ka5 ka6";
+		gap: 5px 5px;
+		perspective: 60px;
+	}
+	.transformed
+	{
+		transform-style: preserve-3d;
+	}
+	#about #box .innerka .ka1
+	{
+		grid-area: ka1;
+	}
+	#about #box .innerka .ka2
+	{
+		grid-area: ka2;
+	}
+	#about #box .innerka .ka3
+	{
+		grid-area: ka3;
+	}
+	#about #box .innerka .ka4
+	{
+		grid-area: ka4;
+	}
+	#about #box .innerka .ka5, #about #box .innerka .ka5 a
+	{
+		grid-area: ka5;
+		font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+		color: #822b2e;
+		text-decoration: underline;
+		font-weight: bold;
+		text-align: left;
+		font-size: 14px;
+	}
+	#about #box .innerka .ka5 p
+	{
+		position: relative;
+		top: 70px;
+		padding: 5px 10px 5px 10px;
+		display: block;
+	}
+	#about #box .innerka .ka6
+	{
+		grid-area: ka6;
+	}
+#about #box .ti
+{
+	grid-area: ti;
+}
+#about #box .si
+{
+	grid-area: si;
+	padding: 15px 5px;
+	text-align: left;
+	font-size: 17px;
+}
+#about #box .ki
+{
+	grid-area: ki;
+
+	padding: 15px 5px;
+	text-align: left;
+	font-size: 17px;
+	white-space: pre-wrap;
+}
+#about #box .tu
+{
+	grid-area: tu;
+}
+#about #box .su
+{
+	grid-area: su;
+}</code></pre>
+					<b>jQuery</b>
+<pre><code>var colors = ['4d367f', 'fd7bab', 'ff898b', '29254d', '793c50', '523678', '8972a3','d8678f','40353f', '1a0546', '4e6325', 'a96141', '381864', '516288', '804b74', '341736', '7a0b50', '0a320b', '021d29', '5f0df0', '470b13', '732431', 'cf557e', '815aa9'];
+var colored = false;
+var portrait = false;
+
+$('#about #box .colorme').each(function(){
+	var color = colors[Math.floor(Math.random() * colors.length)];
+	var color2 = colors[Math.floor(Math.random() * colors.length)];
+
+	$(this).css({
+		'background': 	'#' + color,
+		'background': 	'linear-gradient(90deg, #'+ color + ', #' + color2 + ')'
+	});
+});
+
+$('#about #box .colorme').hover(function(){
+	if (!colored)
+	{
+		var color = colors[Math.floor(Math.random() * colors.length)];
+		var color2 = colors[Math.floor(Math.random() * colors.length)];
+		h = $(this).innerHeight / 3;
+		deg = 45 * Math.floor(Math.random() * 7);  
+		
+
+		$(this).css({
+			'background': '#' + color,
+			'background': 'linear-gradient(' + deg + 'deg, #'+ color + ', #' + color2 + ')',
+			'border': 	h + 'px solid',
+			'border-image-source': 	'linear-gradient(' + deg + 'deg, #' + color2 + ',transparent)'
+		});
+	}
+});</code></pre>
+					</div>
+				<h3 class="ragosta_highlight_2_trigger">Highlight 2: Full-screen email form with CSS Grid</h3>
+				<!-- <img src="images/sachiko-email.png"> -->
+				<div class="ragosta_highlight_2">
+					<p><img src="images/ragosta_code_highlight_2.gif"></p>
+					<b>HTML</b>
+<pre><code>&lt;body>
+	&lt;form method="post" name="myemailform" action="callme.php">
+		&lt;a href="index.html" class="article home">&lt; Home&lt;/a>
+		&lt;article class="article dear">DEAREST &nbsp;&nbsp;&nbsp; SACHIKO&lt;/article>
+		&lt;textarea name="message" class="article body" placeholder="I recently came across a story you wrote in which trans people swap body parts after an online flesh trading solicitation is instantaneously granted. I know you walk a tight line between fiction and reality, so here goes nothing: I have a beard that might interest you. State your corporal offering and perhaps we can strike a deal.
+" autofocus>&lt;/textarea>
+		&lt;input type="text" name="name" class="article from" placeholder="fondly, cybertrans anonymous">
+		&lt;input type="email" name="email" class="article who" placeholder="your email address">
+		&lt;input type="text" name="subject" class="article subject" placeholder="email subject">
+		&lt;input type="submit" class="article send" name="submit" value="Send >"/>
+	&lt;/form>
+&lt;/body></code></pre>
+				<b>CSS</b>
+<pre><code>form
+{
+	display: grid;
+	grid-template-columns: 125px 1fr 1fr 125px;
+	grid-template-rows: 100px auto 50px 50px;
+	grid-template-areas:
+	"home dear dear send"
+	"home body body send"
+	"home from from send"
+	"home who subject send";
+	width: 100vw;
+	height: 100vh;
+}
+.article
+{
+	padding: 5px 10px;
+	font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+  	background-color: #a94d50;
+  	border-bottom: 1px solid #ffe5be;
+  	color: #ffe5be;
+  	display: inline-block;
+}
+.dear
+{
+	grid-area: dear;
+	font-family: 'Ballet';
+	font-size: 50px;
+	letter-spacing: 3px;
+	display: flex;
+  	justify-content: center;
+}
+.dear::after
+{
+	content: '幸子へ';
+	font-family: 'DotGothic16';
+	position: relative;
+	top: 0px;
+	margin: 0 auto;
+	writing-mode: vertical-rl;
+	text-orientation: upright;
+	font-size: 25px;
+	width: 30px;
+	height: 100px;
+	text-align: center;
+}
+.body
+{
+	grid-area: body;
+  	align-items: start;
+	padding: 10px 50px;
+	text-indent: 50px;
+	text-align: justify;
+}
+.from
+{
+	grid-area: from;
+	display: flex;
+  	justify-content: flex-end;
+}
+.who
+{
+	grid-area: who;
+	display: flex;
+  	justify-content: center;
+}
+.subject
+{
+	grid-area: subject;
+	display: flex;
+  	justify-content: center;
+}
+.send
+{
+	grid-area: send;
+	border-left: 1px solid #ffe5be;
+	cursor: pointer;
+}
+.home
+{
+	grid-area: home;
+	border-right: 1px solid #ffe5be;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	text-decoration: none;
+}
+.j
+{
+	font-family:  'YuMincho' ,'Palatino', serif;
+	display: flex;
+  	justify-content: flex-end;
+}
+textarea, input, textarea:focus, input:focus, a.home:hover
+{
+	border: none;
+	outline: none;
+	resize: none;
+	background-color: #ffe5be;
+  	border-bottom: 1px solid #ffe5be;
+  	color: #a94d50;
+}
+textarea
+{
+	box-sizing: border-box;
+	font-size: 25px;
+}
+a.home:hover
+{
+	cursor: pointer;
+}
+*::placeholder
+{
+	color: #ffe5be;
+}
+*:focus::placeholder
+{
+	color: #a94d50;
+}</code></pre>
+				</div>
+				<h3 class="ragosta_highlight_3_trigger">Design highlight: Heartsnatcher cursor</h3>
+
+				<div class="ragosta_highlight_3">
+					<p><img src="images/ragosta_code_highlight_3.gif"></p>
+				</div>
+			</div>
+
+			<span class="item">artproject.space</span><br>
+				<div class="about">
+					<div class="description"><b>2017</b><br/><br/>a now-defunct online art collective
+					<br/><br/><a class="link" href="archive/artproject/index.html" target="_blank">view in archive ></a></div>
+				</div>
+				<div class="code_highlight">
+<h1></h1>
+<h3>Code highlight 1: Pressure to Submit</h3>
+<img src="images/artproject_highlight_1.gif">
+<b>Javascript</b>
+<pre><code>$(document).ready(function(){
+	var z = 0;
+	$(document).mousemove(function(event){
+		var left = event.pageX,
+			top = event.pageY;
+
+		if (left%2 == 0 && z < 1000)
+		{
+			z++;
+			var fontSize = Math.floor(Math.random() * 40) + 15;
+			var c = Math.floor(Math.random() * 5) + 1; 
+			jQuery('&lt;a/>', {
+				href: 'documents/Submission%20Guidelines.docx',
+				class: 'popup style' + c,
+				css: {
+				'z-index': z,
+				'top': top,
+				'left': left,
+				'font-size' : fontSize,
+				'padding' : fontSize * 3 / 7,
+				'transform' : 'translate(-50%, -50%)',
+				'-webkit-transform' : 'translate(-50%, -50%)'
+				},
+				'text': 'Submit'
+			}).appendTo('body');
+		}
+	});
+	$(window).keypress(function (e) {
+	  if (e.keyCode === 0 || e.keyCode === 32) 
+	  	{
+	  		//clear (hit space)
+	    	e.preventDefault()
+	    	clear();
+		}
+	  if (e.keyCode === 101 || e.keyCode === 69) 
+	   	{
+	   		//epilepsy (hit escape)
+	    	e.preventDefault()
+	    	epilepsy();
+	   	}
+	  if (e.keyCode >= 49 && e.keyCode <= 53)
+		{
+			//hide (hide 1-5)
+	    	e.preventDefault()
+			hide(e.keyCode);
+		}
+	});
+	
+	function clear()
+	{
+		//allow buildup from beginning
+	    $('.style1').remove();
+	    $('.style2').remove();
+	    $('.style3').remove();
+	    $('.style4').remove();
+	    $('.style5').remove();
+	    z = 0;
+	}
+	function epilepsy()
+	{
+		clear();
+		z = 1001;
+	}
+	function hide(e)
+	{
+		if (e == 49)
+		{
+	    	$('.style1').toggle();
+		}
+		if (e == 50)
+		{
+	    	$('.style2').toggle();
+		}
+		if (e == 51)
+		{
+	    	$('.style3').toggle();
+		}
+		if (e == 52)
+		{
+	    	$('.style4').toggle();
+		}
+		if (e == 53)
+		{
+	    	$('.style5').toggle();
+		}
+	}
+});</code></pre>
+
+<b>CSS</b>
+<pre><code>a
+{
+	color: #FFF;
+}
+a.popup
+{
+	position: absolute;
+	display: inline;
+	font-family: 'work sans', 'arial black', sans-serif;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.style1
+{
+	background-color: #ED5140;
+	box-shadow: 5px 5px #BF3021;
+}
+.style2
+{
+	background-color: #86ED40;
+	box-shadow: 5px 5px #61BF21;
+}
+.style3
+{
+	background-color: #A740ED;
+	box-shadow: 5px 5px #7F21BF;
+}
+.style4
+{
+	background-color: #40DCED;
+	box-shadow: 5px 5px #21B0BF;
+}
+.style5
+{
+	background-color: yellow;
+	color: #000;
+	box-shadow: 5px 5px #000;
+}</code></pre>
+
+<h3>Code highlight 2: Adaptive width "buffer" elements (before CSS Grid existed)</h3>
+<img src="images/artproject_highlight_2.gif">
+<b>jQuery</b>
+
+<pre><code>function buffering(){
+	var windowWidth = $(window).outerWidth();
+	var totalWidth = 0;
+	var buffers = 0;
+
+	$('div').each(function(){
+		$(this).css('font-size', windowWidth/21.3);
+
+		var width = $(this).outerWidth();
+		var height = $(this).outerHeight();
+		totalWidth = totalWidth + width;
+
+		var currentDiv = $(this);
+		if (totalWidth > windowWidth)
+		{
+
+			//creating the buffer
+			var newDiv = $("&lt;div class='buffer'>&lt;/div>");
+
+			//placing it
+			if (buffers%2 == 0)
+			{
+				currentDiv.parent().prev().before(newDiv);
+			}
+			else
+			{
+				currentDiv.closest('a').before(newDiv);
+			}
+			buffers++;
+
+			//adjusting its width
+			var difference = totalWidth - windowWidth;
+			var newElementWidth = width - difference - 1;
+			newDiv.width(newElementWidth);
+			newDiv.height(height);
+			newDiv.css({padding: '0px'});
+			totalWidth = width;
+		}
+	});
+
+	var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'];
+	var index = 0;
+
+	$('div').hover(
+		function()
+		{
+			if (!$(this).hasClass('block')) 
+			{
+				var color = colors[(index)%6];
+				$(this).css('background-color', color);
+				index++;
+			}
+		}, function()
+		{
+			if ($(this).hasClass('block')) 
+			{
+				$(this).css('background-color', '#FFF');
+			}
+		}
+	);
+}
+
+$(window).resize(function(){
+	$('.buffer').remove();
+	buffering();
+});</code></pre></div>
+
+			<span class="item">The Mythology of Blood and Boyhood</span><br>
+				<div class="about">
+					<div class="description"><b>2021</b><br/><br/>a visual journey through the chapbook <i>The Mythology</i> by Sachiko Ragosta, commissioned by the author
+					<br/><br/><a class="link" href="http://sachikor.com/the-mythology-of-blood-and-boyhood.html" target="_blank">view online ></a></div>
+				</div>
+
+			<span class="item">Bears Against ICE</span><br>
+				<div class="about">
+					<div class="description"><b>2019</b><br/><br/>a virtual home for a petition in support of UC Berkeley Bears Against ICE
+					<br/><br/><a class="link" href="archive/bearsagainstice.html" target="_blank">view in archive ></a></div>
+				</div>
+			<span class="item">Adonis Brooks Archive</span><br>
+				<div class="about">
+					<div class="description"><b>2017-2023</b><br/><br/>an archive of selected writings by poet and essayist Adonis Brooks
+					<br/><br/><a class="link" href="archive/artproject/read%2001/adonisbrooks/index.html" target="_blank">view in archive ></a></div>
+				</div></article>
+		<article>
+			<u>graphic design</u><br>
+
+			<span class="item">AC Transit & Bear Transit Campus Maps</span><br>
+				<div class="about">
+					<div class="description"><b>2019</b><br/><br/>illustrated maps of the Bear Transit (UC Berkeley campus shuttles) and AC Transit systems as of 2019 (Prior to pandemic-related route changes)
+					<br/><br/><a class="link" href="archive/ucbpt.pdf" target="_blank">view in archive ></a></div>
+				</div>
+			<span class="item">East Bay Bus Map</span><br>
+				<div class="about">
+					<div class="description"><b>2019</b><br/><br/>in-progress illustrated map of the AC Transit bus system
+					<br/><br/><a class="link" href="archive/ebbm.svg" target="_blank">view in archive ></a></div>
+				</div>
+<!-- 			<span class="item">Logos and Emblems</span><br>
+				<div class="about">
+					<div class="description"><b>2019</b><br/><br/>in-progress illustrated map of the AC Transit bus system
+					<br/><br/><a class="link" href="archive/ebbm.svg" target="_blank">view in archive ></a></div>
+				</div> -->
+		</article>
+		<article>
+			<u>other creations</u><br/><br/>
+
+			<span class="item">goldpockets</span><br>
+				<div class="about">
+					<div class="description"><b>2018</b><br/><br/>wears and wares by me, built on sewing machine
+					<br/><br/><a class="link" href="https://www.instagram.com/gold.pockets/" target="_blank">view online ></a></div>
+				</div>
+
+			<span class="item">scribeangel</span><br>
+				<div class="about">
+					<div class="description"><b>2018</b><br/><br/>a social media archive of my various calligraphy art
+					<br/><br/><a class="link" href="https://www.instagram.com/scribeangel/" target="_blank">view online ></a></div>
+				</div>
+
+			<span class="item">Babushka</span><br>
+				<div class="about">
+					<div class="description"><b>2018</b><br/><br/>a comic
+					<br/><br/><a class="link long" href="mailto:andryusha@kuznet.net" target="_blank">please contact me to view ></a></div>
+				</div>
+
+			<span class="item">holy language</span><br>
+				<div class="about">
+					<div class="description"><b>2017</b><br/><br/>a weaving together of Hebrew, Yiddish, and Arabic calligraphy</i>
+					<br/><br/><a class="link" href="archive/artproject/read%2001/andrewkuznetsov/pages/loshnkoydesh.html" target="_blank">view in archive ></a></div>
+				</div>
+
+			<span class="item">neopian Tumblr theme</span><br>
+				<div class="about">
+					<div class="description"><b>2014</b><br/><br/>a tumblr theme based on the old design of neopets.com</i>
+					<br/><br/><a class="link" href="https://www.tumblr.com/theme/35015" target="_blank">view online ></a></div>
+				</div>
+
+			<span class="item">1997 Tumblr theme</span><br>
+				<div class="about">
+					<div class="description"><b>2013</b><br/><br/>a tumblr theme</i>
+					<br/><br/><a class="link" href="https://www.tumblr.com/theme/35979" target="_blank">view online ></a></div>
+				</div>
+		</article>
+		<article>
+			contact me <span class="contact long">andryusha@kuznet.net</span>
+		</article>
+	</article>
+</body>
+</html>
