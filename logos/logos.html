@@ -23,7 +23,7 @@
                     newDiv = document.createElement("div");
 
                 newDiv.innerHTML = elementHTML;
-                document.body.appendChild(newDiv);
+                $('#container').append(newDiv);
             }
         });
     </script>
@@ -52,6 +52,7 @@
         h1
         {
             font-family: 'Unbounded';
+            text-align: center;
         }
         img
         {
@@ -62,4 +63,5 @@
 </head>
 <body>
     <h1>my logos</h1>
+    <div id="container"></div>
 </body>
