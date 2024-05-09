@@ -13,13 +13,10 @@
 
         for (i in logoImages)
         {
-            console.log(i);
-
             let url = logoImages[i] + '.png',
                 name = logoImages[i];
 
-                console.log(url);
-                console.log(name);
+                console.log(`<img src="${url}"><span>${name}</span>`);
 
             $('body').append(`<img src="${url}"><span>${name}</span>`);
         }
