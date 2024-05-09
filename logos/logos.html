@@ -26,6 +26,10 @@
                 newDiv.innerHTML = elementHTML;
                 $('#container').append(newDiv);
             }
+
+            $('.logo').each(function(){
+                $(this).css('padding-top', Math.Random()*100);
+        });
         });
     </script>
     <style type="text/css">
@@ -55,11 +59,7 @@
             display: flex;
             flex-direction: column;
             text-align: center;
-        }
-        h1
-        {
-            font-family: 'Unbounded';
-            text-align: center;
+            font-weight: bold;
         }
         img
         {
@@ -83,7 +83,7 @@
         a
         {
             text-decoration: none;
-            color: #FFF;
+            color: #001da1;
         }
     </style>
 </head>
