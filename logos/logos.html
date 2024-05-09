@@ -14,11 +14,12 @@
         for (i in logoImages)
         {
             let url = logoImages[i] + '.png',
-                name = logoImages[i];
+                name = logoImages[i],
+                elementHTML = `<img src="${url}"><span>${name}</span>`;
 
-                console.log(`<img src="${url}"><span>${name}</span>`);
-
-            $('body').append(`<img src="${url}"><span>${name}</span>`);
+            const newDiv = document.createElement("div");
+            newDiv.innerHTML = elementHTML;
+            $('body').append(newDiv);
         }
     </script>
     <style type="text/css">
