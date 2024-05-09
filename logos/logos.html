@@ -13,7 +13,7 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            const logoImages = ['arabic why design', 'cyco books logo', 'GLYK theater collective logo', 'hilar health logo (horizontal black)', 'hilar health logo', 'performance art showcase poster', 'queer stork logo for ibis reproductive health'];
+            const logoImages = ['arabic why design', 'cyco books logo', 'GLYK theater collective logo', 'hilar health logo (horizontal black)', 'hilar health logo', 'performance art showcase poster', 'queer stork logo for ibis reproductive health','queer stork logo for ibis reproductive health (with text)', ];
 
             for (i in logoImages)
             {
@@ -61,7 +61,13 @@
         }
         img
         {
-            max-width: 25vw;
+            max-height: 25vh;
+            border:1px solid transparent;
+        }
+        img:hover
+        {
+            background-color: #FFF;
+            border:1px solid #000;
         }
         #home
         {
