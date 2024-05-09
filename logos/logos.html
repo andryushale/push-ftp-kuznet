@@ -9,19 +9,22 @@
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript">
-        const logoImages = ['arabic why? design', 'cyco books logo', 'GLYK theater collective logo', 'hilar health logo (horizontal black)', 'hilar health logo', 'performance art showcase poster', 'queer stork logo for ibis reproductive health'];
+        $(document).ready(function(){
 
-        for (i in logoImages)
-        {
-            let url = logoImages[i] + '.png',
-                name = logoImages[i],
-                elementHTML = `<img src="${url}"><span>${name}</span>`;
+            const logoImages = ['arabic why? design', 'cyco books logo', 'GLYK theater collective logo', 'hilar health logo (horizontal black)', 'hilar health logo', 'performance art showcase poster', 'queer stork logo for ibis reproductive health'];
 
-            let newDiv = document.createElement("div");
-            newDiv.innerHTML = elementHTML;
-            console.log(newDiv);
-            $('body').append(newDiv);
-        }
+            for (i in logoImages)
+            {
+                let url = logoImages[i] + '.png',
+                    name = logoImages[i],
+                    elementHTML = `<img src="${url}"><span>${name}</span>`;
+
+                let newDiv = document.createElement("div");
+                newDiv.innerHTML = elementHTML;
+                console.log(newDiv);
+                document.body.appendChild(newDiv);
+            }
+    });
     </script>
     <style type="text/css">
         img
