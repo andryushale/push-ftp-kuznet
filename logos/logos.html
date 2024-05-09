@@ -17,8 +17,9 @@
                 name = logoImages[i],
                 elementHTML = `<img src="${url}"><span>${name}</span>`;
 
-            const newDiv = document.createElement("div");
+            let newDiv = document.createElement("div");
             newDiv.innerHTML = elementHTML;
+            console.log(newDiv);
             $('body').append(newDiv);
         }
     </script>
@@ -30,4 +31,5 @@
     </style>
 </head>
 <body>
+    <h1>my logos</h1>
 </body>
