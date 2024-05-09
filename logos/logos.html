@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="images/icon.png"/>
+	<link rel="apple-touch-icon" href="images/icon.png"/>
+	<title>andryusha kuznetsov</title>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        const logoImages = ['arabic why? design', 'cyco books logo', 'GLYK theater collective logo', 'hilar health logo (horizontal black)', 'hilar health logo', 'performance art showcase poster', 'queer stork logo for ibis reproductive health'];
+
+        for (i in logoImages)
+        {
+            let url = logoImages[i] + '.png',
+                name = logoImages[i];
+
+            $('body').append(`
+                <img src="/{url}"><span>{name}</span>
+        `);
+        }
+    </script>
+</head>
+<body>
+
+</body>
