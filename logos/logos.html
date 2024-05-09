@@ -36,8 +36,11 @@
             font-family: 'Karla', 'Arial Black', sans-serif;
             font-size: 1.5em;
             color: #FFF;
-            background: gray;
-        }
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, #001da1 1px, transparent 1px),
+                linear-gradient(to bottom, #001da1 1px, transparent 1px);
+                    }
         #container
         {
             width: 100%;
@@ -72,8 +75,8 @@
         #home
         {
             position: fixed;
-            top: 0px;
-            left: 0px;
+            bottom: 0px;
+            right: 0px;
             margin: 50px;
             font-size: 3em;
         }
@@ -81,10 +84,6 @@
         {
             text-decoration: none;
             color: #FFF;
-        }
-        a:hover
-        {
-            text-decoration: underline;
         }
     </style>
 </head>
