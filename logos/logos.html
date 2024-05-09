@@ -8,29 +8,45 @@
 	<title>andryusha kuznetsov</title>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Unbounded:wght@400;600&family=Karla:wght@400;900&display=swap" rel="stylesheet">
+
     <script type="text/javascript">
         $(document).ready(function(){
-
-            const logoImages = ['arabic why? design', 'cyco books logo', 'GLYK theater collective logo', 'hilar health logo (horizontal black)', 'hilar health logo', 'performance art showcase poster', 'queer stork logo for ibis reproductive health'];
+            const logoImages = ['arabic why design', 'cyco books logo', 'GLYK theater collective logo', 'hilar health logo (horizontal black)', 'hilar health logo', 'performance art showcase poster', 'queer stork logo for ibis reproductive health'];
 
             for (i in logoImages)
             {
                 let url = logoImages[i] + '.png',
                     name = logoImages[i],
-                    elementHTML = `<img src="${url}"><span>${name}</span>`;
+                    elementHTML = `<img src="${url}"><span>${name}</span>`,
+                    newDiv = document.createElement("div");
 
-                let newDiv = document.createElement("div");
                 newDiv.innerHTML = elementHTML;
-                console.log(newDiv);
                 document.body.appendChild(newDiv);
             }
-    });
+        });
     </script>
     <style type="text/css">
+        body
+        {
+            height:  100vh;
+            width:  100vw;
+            padding:  0px 50px;
+            margin: 0px;
+            font-family: 'Karla', 'Trebuchet MS', sans-serif;
+            background-color: #3e2bcc;
+            color: #FFF;
+        }
+        h1
+        {
+            font-family: 'Unbounded';
+        }
         img
         {
             max-width: 30vw;
         }
+        
     </style>
 </head>
 <body>
