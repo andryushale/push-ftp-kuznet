@@ -21,7 +21,7 @@
                     name = logoImages[i],
                     elementHTML = `<img src="${url}"><span>${name}</span>`,
                     newDiv = document.createElement("div");
-                    newDiv.addClass('logo');
+                    newDiv.classList.add('logo');
 
                 newDiv.innerHTML = elementHTML;
                 $('#container').append(newDiv);
