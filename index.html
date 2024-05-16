@@ -164,17 +164,12 @@
 
 		function makeColorsLegible()
 			{
-				// $('body, a, nav').css('color', '#090621');
-				// $('body').css('background-color', '#C5B7EB');
-				$('body, a, nav').animate({color: '#090621'}, 500);
 				$('body').animate({backgroundColor: '#C5B7EB'}, 500);
 			}
 			function makeColorsIllegible()
 			{
-				$('body, a, nav').css('color', '#2c1f8d');
-				$('body').css('background-color', '#3e2bcc');
-				// $('body, a').animate({color: '#2c1f8d'}, 500);
-				// $('body').animate({backgroundColor: '#3e2bcc'}, 500);
+				$('body, a, nav').animate({color: '#2c1f8d'}, 500);
+				$('body').animate({backgroundColor: '#3e2bcc'}, 500);
 			}
 
 
@@ -209,6 +204,7 @@
 	@media only screen and (max-width: 600px) {
 	  body,html {
 	  	font-size: 3vw;
+		color: #FFF;
 	  }
 	}
 
@@ -353,7 +349,7 @@
 				top: 0px;
 				right: 0px;
 				margin: 5vw;
-				color: #090621;
+				color: #2c1f8d;
 				text-align: right;
 			}
 			#about .description
@@ -406,7 +402,7 @@
 				position: relative;
 				padding: 25px;
 				display: none;
-				color: #090621;
+				color: #2c1f8d;
 				text-align: justify;
 				cursor: auto;
 			}
