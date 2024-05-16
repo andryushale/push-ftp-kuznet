@@ -160,13 +160,13 @@
 
 		function makeColorsLegible()
 			{
-				$('body, a').css('color', '#090621');
-				$('body').css('background-color', '#d9d5f6');
+				$('body, a').animate({color: '#090621'}, 500);
+				$('body').animate({backgroundColor: '#d9d5f6'}, 500);
 			}
 			function makeColorsIllegible()
 			{
-				$('body, a').css('color', '#2c1f8d');
-				$('body').css('background-color', '#3e2bcc');
+				$('body, a').animate({color: '#2c1f8d'}, 500);
+				$('body').animate({backgroundColor: '#3e2bcc'}, 500);
 			}
 
 
@@ -319,7 +319,7 @@
 				background-color: transparent;
 				border-radius: 100%;
 				filter: blur(5px);
-				border: 10px solid #abde1f;
+				border: 10px solid #090621;
 				opacity: .5;
 				position: fixed;
 				top: 0px;
