@@ -45,6 +45,7 @@
 			$('#intro_circle').click(function(){
 				$(this).hide();
 				showImage();
+				makeColorsLegible();
 			});
 
 			$('.item').each(function(){
@@ -61,6 +62,7 @@
 					$('img.o').attr('src', imagesString);
 
 					showImage();
+					makeColorsLegible();
 					$('.active').removeClass('active');
 					$(this).addClass('active');
 				});
@@ -153,8 +155,21 @@
 			$('#fixed_circle, img.o, #code_highlight').hide();
 			$('#about').html('');
 			$('#intro_circle').show();
-
+			makeColorsIllegible();
 		});
+
+		function makeColorsLegible()
+			{
+				$('body, a').css('color', '#090621');
+				$('body').css('background-color', '#d9d5f6');
+			}
+			function makeColorsIllegible()
+			{
+				$('body, a').css('color', '#2c1f8d');
+				$('body').css('background-color', '#3e2bcc');
+			}
+
+			
 		// bulk
 		$(document).on('click', '.ragosta_highlight_1_trigger', function(){
 			$('.ragosta_highlight_1').toggle(500);
@@ -181,7 +196,7 @@
 		padding: 0px;
 		font-family: 'Karla', 'Trebuchet MS', sans-serif;
 		font-size: 1.1em;
-		color: #090621;
+		color: #2c1f8d;
 	}
 	@media only screen and (max-width: 600px) {
 	  body,html {
