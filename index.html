@@ -10,6 +10,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Unbounded:wght@400;600&family=Karla:wght@400;900&display=swap" rel="stylesheet">
 
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script
+	src="https://code.jquery.com/color/jquery.color-3.0.0.min.js"
+	integrity="sha256-KfnxwOV3FhXN7A/28TCtqslo5fRS23cxO5XcxVO5we8="
+	crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -160,10 +164,10 @@
 
 		function makeColorsLegible()
 			{
-				$('body, a, nav').css('color', '#090621');
-				$('body').css('background-color', '#C5B7EB');
-				// $('body, a').animate({color: '#090621'}, 500);
-				// $('body').animate({'background-color': '#C5B7EB'}, 500);
+				// $('body, a, nav').css('color', '#090621');
+				// $('body').css('background-color', '#C5B7EB');
+				$('body, a, nav').animate({color: '#090621'}, 500);
+				$('body').animate({backgroundColor: '#C5B7EB'}, 500);
 			}
 			function makeColorsIllegible()
 			{
