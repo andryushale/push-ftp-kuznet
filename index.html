@@ -930,40 +930,6 @@ function compare_strings(a, b)
 				</div>
 				<div class="code_highlight"></div>
 
-			<span class="item">Berkeley Art Museum and Pacific Film Archive (BAMPFA) Student Committee</span><br>
-				<div class="about">
-					<div class="description"><b>2015</b><p>a home for BAMPFA's student club at UC Berkeley</p>
-					<a class="link" href="archive/bampfa.html" target="_blank">view in archive ></a>
-					</div>
-				</div>
-				<div class="code_highlight">
-<h3>Code highlight: Baby’s first scroll-to navigation</h3>
-<p><img src="images/bampfa_highlight.gif"></p>
-<pre><code>$(document).ready(function(){
-	var lastScrollTop = 0;
-
-	$(window).scroll(function(){
-		var scroll = $(window).scrollTop();
-
-		//scroll
-		if(scroll > 100 && scroll < 150 && scroll > lastScrollTop)
-		{
-			$("#bottombar").animate({'bottom': '0px'}, 800);
-		}
-		if (scroll == 0)
-		{
-
-			$("#bottombar").animate({'bottom': '-100px'}, 800);
-		}
-		lastScrollTop = scroll;
-	});
-
-	$("a[href='#top']").click(function(){
-		$('#bottombar .selected').removeClass('selected');
-		$('#bottombar .top').addClass('selected');
-		$('html, body').animate({scrollTop: 0}, 1000);
-	});
-});</code></pre></div>
 
 			<span class="item">Sachiko Ragosta Portfolio</span><br>
 				<div class="about">
@@ -1585,6 +1551,41 @@ $(window).resize(function(){
 });</code></pre></div>
 
 			
+<span class="item">Berkeley Art Museum and Pacific Film Archive (BAMPFA) Student Committee</span><br>
+<div class="about">
+	<div class="description"><b>2015</b><p>a home for BAMPFA's student club at UC Berkeley</p>
+	<a class="link" href="archive/bampfa.html" target="_blank">view in archive ></a>
+	</div>
+</div>
+<div class="code_highlight">
+<h3>Code highlight: Baby’s first scroll-to navigation</h3>
+<p><img src="images/bampfa_highlight.gif"></p>
+<pre><code>$(document).ready(function(){
+var lastScrollTop = 0;
+
+$(window).scroll(function(){
+var scroll = $(window).scrollTop();
+
+//scroll
+if(scroll > 100 && scroll < 150 && scroll > lastScrollTop)
+{
+$("#bottombar").animate({'bottom': '0px'}, 800);
+}
+if (scroll == 0)
+{
+
+$("#bottombar").animate({'bottom': '-100px'}, 800);
+}
+lastScrollTop = scroll;
+});
+
+$("a[href='#top']").click(function(){
+$('#bottombar .selected').removeClass('selected');
+$('#bottombar .top').addClass('selected');
+$('html, body').animate({scrollTop: 0}, 1000);
+});
+});</code></pre></div>
+
 		</article>
 		<article>
 			<u>graphics</u><br>
